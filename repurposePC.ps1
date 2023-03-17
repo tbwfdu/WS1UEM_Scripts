@@ -9,7 +9,24 @@
 # Execution Context: SYSTEM
 # Execution Architecture: EITHER64OR32BIT
 # Timeout: 30
-# Variables: staginguser,STAGINGUSERNAME; staginguserpassword,STAGINGPASSWORD; OGName,OGNAME; Server,DS_FQDN; Download,true/false
+# Variables:
+#   Username: Staging Account Username
+#   Password: Staging Account Password
+#   OGName: Org Group Name in the destination environment
+#   Server: Devices Services Server URL
+#   Download: If appended to command, will download the Agent
+#
+#   example:  powershell.exe -ep bypass -file .\repurposePC.ps1 -Username mystagingaccount -Password secretpasswd -OGName acme -Server ds123.awmdm.com -Download
+#
+
+param (
+  [Parameter(Mandatory=$true)][string]$Username=$Username,
+  [Parameter(Mandatory=$true)][string]$Password=$Password,
+  [Parameter(Mandatory=$true)][string]$OGName=$OGName,
+  [Parameter(Mandatory=$true)][string]$Server=$Server,
+  [switch]$Download
+)
+
 function Write-Log2{
     [CmdletBinding()]
     Param(
@@ -571,14 +588,9 @@ function Main {
     Invoke-GetTask
     Invoke-CreateTask
     Write-Log2 -Path "$logLocation" -Message "Created Task set to run approx 5 minutes after next logon" -Level Info
-   }
-  }
+    }
+}
 
-$Username=$env:staginguser
-$password= $env:staginguserpassword
-$OGName=$env:OGName
-$Server=$env:server
-$Download=$env:Download
 
 #Enable Debug Logging
 $Debug = $false
