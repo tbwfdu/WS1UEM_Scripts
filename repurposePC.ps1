@@ -571,7 +571,8 @@ function Main {
     Invoke-GetTask
     Invoke-CreateTask
     Write-Log2 -Path "$logLocation" -Message "Created Task set to run approx 5 minutes after next logon" -Level Info
-}
+   }
+  }
 
 $Username=$env:staginguser
 $password= $env:staginguserpassword
