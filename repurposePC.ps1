@@ -569,7 +569,7 @@ function Main {
     } else {
         Write-Log2 -Path "$logLocation" -Message "Please specify -Download parameter to download the latest AirwatchAgent.msi" -Level Error
     }
-    if(!(Test-Path -Path "$agentpath\$agent" -PathType Leaf)){
+
     if(!(Test-Path -Path "$agentpath\$agent" -PathType Leaf)){
         Copy-Item -Path "$current_path\$agent" -Destination "$agentpath\$agent" -Force
         Write-Log2 -Path "$logLocation" -Message "Copied $agent to $agentpath" -Level Info
@@ -589,7 +589,7 @@ function Main {
     Invoke-CreateTask
     Write-Log2 -Path "$logLocation" -Message "Created Task set to run approx 5 minutes after next logon" -Level Info
     }
-}
+
 
 
 #Enable Debug Logging
