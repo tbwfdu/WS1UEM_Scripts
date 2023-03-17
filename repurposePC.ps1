@@ -67,7 +67,7 @@ function Invoke-GetTask{
 function Invoke-CreateTask{
     #Get Current time to set Scheduled Task to run powershell
     $DateTime = (Get-Date).AddMinutes(5).ToString("HH:mm")
-    $arg = "-ep Bypass -File $deploypathscriptName -username $staginguser -password $staginguserpassword -Server $Server -OGName $OGName"
+    $arg = "-ep Bypass -File $deploypathscriptName -username $Username -password $Password -Server $Server -OGName $OGName"
 
     #$TaskName = "$scriptBaseName"
 
